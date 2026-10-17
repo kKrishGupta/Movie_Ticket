@@ -21,11 +21,15 @@ export const bannerStyles = {
   star: "h-4 w-4 sm:h-5 sm:w-5 text-yellow-400",
   ratingText: "ml-2 text-white text-sm sm:text-base",
   genreText: "text-gray-300 text-xs sm:text-sm",
+  genreContainer: "flex items-center gap-2 text-gray-300 text-xs sm:text-sm font-medium",
+  genre: "hover:text-white transition-colors",
+  genrePoint: "text-red-500 font-bold select-none",
   
   // Button styles
   buttonsContainer: "flex flex-wrap gap-3 font-[pacifico]",
   bookButton: "bg-red-600 cursor-pointer hover:bg-red-700 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl text-sm sm:text-base",
   infoButton: "bg-white/20 hover:bg-white/30 text-white backdrop-blur-sm px-4 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center transition-all duration-300 border border-white/30 text-sm sm:text-base",
+  button: "bg-white/20 hover:bg-white/30 text-white backdrop-blur-sm px-4 sm:px-6 py-2.5 sm:py-3 rounded-full flex items-center transition-all duration-300 border border-white/30 text-sm sm:text-base cursor-pointer",
   
   // Icon styles
   icon: "h-4 w-4 sm:h-5 sm:w-5 mr-2",
