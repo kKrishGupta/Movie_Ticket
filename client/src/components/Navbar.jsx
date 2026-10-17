@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { navbarStyles, navbarCSS } from '../assets/dummyStyles'
 import { Clapperboard, Home, Film, Calendar, Mail, Ticket, Menu, X, LogIn, LogOut } from 'lucide-react'
@@ -7,14 +7,81 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userEmail, setUserEmail] = useState('')
+  const menuRef = useRef(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => setIsScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    const readAuthFromStorage = () => {
+      const json = localStorage.getItem('cine_auth')
+      if (json) {
+        try {
+          const parsed = JSON.parse(json)
+          setIsLoggedIn(Boolean(parsed?.isLoggedIn))
+          setUserEmail(parsed?.email || '')
+          return
+        } catch (e) {
+          console.error('Error parsing cine_auth from localStorage:', e)
+        }
+      }
+      const simpleFlag = localStorage.getItem('isLoggedIn')
+      const email = localStorage.getItem('userEmail') || localStorage.getItem('cine_user_email')
+      if (simpleFlag) {
+        setIsLoggedIn(true)
+        setUserEmail(email || '')
+        return
+      }
+      if (email) {
+        setIsLoggedIn(true)
+        setUserEmail(email)
+        return
+      }
+      setIsLoggedIn(false)
+      setUserEmail('')
+    }
+
+    readAuthFromStorage()
+
+    const onStorage = (e) => {
+      if (['cine_auth', 'isLoggedIn', 'userEmail', 'cine_user_email'].includes(e.key)) {
+        readAuthFromStorage()
+      }
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768 && isMenuOpen) {
+        setIsMenuOpen(false)
+      }
+    }
+    const onKey = (e) => {
+      if (e.key === 'Escape') setIsMenuOpen(false)
+    }
+    window.addEventListener('resize', onResize)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      window.removeEventListener('resize', onResize)
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [isMenuOpen])
+
+  const handleLogout = () => {
+    localStorage.removeItem('userEmail')
+    localStorage.removeItem('isLoggedIn')
+    localStorage.removeItem('cine_auth')
+    localStorage.removeItem('cine_user_email')
+    setIsLoggedIn(false)
+    setUserEmail('')
+    window.location.href = '/login'
+  }
 
   const navItems = [
     { id: 'home', label: 'Home', icon: Home, path: '/' },
@@ -76,7 +143,7 @@ const Navbar = () => {
               {isLoggedIn ? (
                 <button
                   type="button"
-                  onClick={() => setIsLoggedIn(false)}
+                  onClick={handleLogout}
                   className={navbarStyles.logoutButton}
                 >
                   <LogOut className={navbarStyles.authIcon} />
@@ -114,7 +181,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Panel */}
         {isMenuOpen && (
-          <div className={navbarStyles.mobileMenuPanel}>
+          <div ref={menuRef} className={navbarStyles.mobileMenuPanel}>
             <div className={navbarStyles.mobileMenuItems}>
               {navItems.map((item) => {
                 const ItemIcon = item.icon
@@ -143,7 +210,7 @@ const Navbar = () => {
                   <button
                     type="button"
                     onClick={() => {
-                      setIsLoggedIn(false)
+                      handleLogout()
                       setIsMenuOpen(false)
                     }}
                     className={navbarStyles.mobileLogoutButton}
