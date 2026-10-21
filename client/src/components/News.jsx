@@ -64,14 +64,14 @@ const News = () => {
           {/* Left Column (Span 2): Hero Card + 3 Strip Cards */}
           <article className={newsStyles.heroCard}>
             {/* Top featured image banner with readable gradient */}
-            <div className="relative h-96 sm:h-[440px] md:h-[480px] lg:h-[440px] xl:h-[480px] w-full overflow-hidden">
+            <div className="relative h-96 sm:h-110 md:h-120 lg:h-110 xl:h-120 w-full overflow-hidden">
               <img
                 src={sampleNews[0]?.image}
                 alt={sampleNews[0]?.title}
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/60 to-black/20 pointer-events-none" />
 
               <div className={newsStyles.heroContent}>
                 <span className={newsStyles.heroCategory}>
@@ -255,7 +255,7 @@ const News = () => {
           </aside>
         </section>
       </main>
-      <style jsx>{newsCSS}</style>
+      <style>{newsCSS}</style>
     </div>
   );
 };

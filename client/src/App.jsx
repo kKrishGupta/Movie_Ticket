@@ -1,29 +1,19 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Banner from './components/Banner';
-import Movies from './components/Movies';
-import Trailers from "./components/Trailers";
-import News from "./components/News";
-import Home from './pages/Home'
-import NotFound from './pages/NotFound'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col">
-      <Navbar />
-      <Banner />
-      <Movies />
-      <Trailers/>
-      <News/>
-      <main className="flex-1 pt-28 sm:pt-32">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </div>
-  )
-}
+   <>
+     <Routes>
+       <Route path="/" element={<Home />} />
+       <Route path="/login" element={<Login />} />
+       <Route path="*" element={<NotFound />} />
+     </Routes>
+   </>
+  );
+};
 
-export default App
+export default App;
