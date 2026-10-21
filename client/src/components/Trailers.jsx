@@ -1,7 +1,7 @@
 import React, { useEffect, useState ,useRef} from 'react';
 import { trailersStyles, trailersCSS } from '../assets/dummyStyles';
 import { trailersData } from '../assets/trailerdata';
-import { ChevronLeft, ChevronRight, Clapperboard, Play, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Clapperboard, Play, X, Clock, Calendar } from 'lucide-react';
 
 
 const Trailers = () => {
@@ -70,17 +70,17 @@ const Trailers = () => {
         if(url.pathname.startsWith("/embed/")){
           return `https://www.youtube.com${url.pathname}`;
         }
-        if(host === "youtu.be"){
-          const vid = url.pathname.slice(1);
-          if(vid) return `https://www.youtube.com/embed/${vid}`;
-        }
-        if(host.includes("vimeo.com")){
-          const parts = url.pathname.split("/").filter(Boolean);
-          const id = parts.pop();
-          if(id) return `https://player.vimeo.com/video/${id}`;
-        }
-        return videoUrl;
       }
+      if(host === "youtu.be"){
+        const vid = url.pathname.slice(1).split('/')[0];
+        if(vid) return `https://www.youtube.com/embed/${vid}`;
+      }
+      if(host.includes("vimeo.com")){
+        const parts = url.pathname.split("/").filter(Boolean);
+        const id = parts.pop();
+        if(id) return `https://player.vimeo.com/video/${id}`;
+      }
+      return videoUrl;
     }catch (error){
       console.error("Error extracting embed base URL:", error);
       return '';
@@ -189,12 +189,58 @@ const Trailers = () => {
                 </div>
               )}
               </div>
+              <div className={trailersStyles.trailerInfo}>
+                <div className={trailersStyles.infoHeader}>
+                  <h2 className={trailersStyles.trailerTitle}>{featuredTrailer.title}
+                  </h2>
+                  <div className = {trailersStyles.trailerMeta}>
+                    <span className ={trailersStyles.metaItem}>
+                      <Clock size={16} className={trailersStyles.metaIcon}/>
+                      {featuredTrailer.duration}
+                    </span>
+                    <span className ={trailersStyles.metaItem}>
+                      <Calendar size={16} className={trailersStyles.metaIcon}/>
+                      {featuredTrailer.year}
+                    </span>
+                  </div>
+                </div>
+
+                <div className={trailersStyles.genreContainer}>
+                  {featuredTrailer.genre.split(",").map((genre, index) => (
+                    <span key={index} className={trailersStyles.genreTag}>
+                      {genre.trim()}
+                    </span>
+                  ))}
+                </div>
+
+                <p className={trailersStyles.description}>
+                  {featuredTrailer.description}
+                </p>
+
+                <div className={trailersStyles.credits}>
+                  <h3 className={trailersStyles.creditsTitle}>
+                    Credits
+                  </h3>
+                  <div className={trailersStyles.creditsGrid}>
+                    {featuredTrailer.credits &&
+                      Object.entries(featuredTrailer.credits).map(([role, person]) => (
+                        <div key={role} className={trailersStyles.creditItem}>
+                          <div className={trailersStyles.creditImage}>
+                            <img src={person.image} alt={person.name} className={trailersStyles.creditImageSrc} loading="lazy" />
+                          </div>
+                          <div className={trailersStyles.creditName}>{person.name}</div>
+                          <div className={trailersStyles.creditRole}>{role}</div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        </div>
       </div>
+      <style jsx>{trailersCSS}</style>
+    </div>
   )
 }
 

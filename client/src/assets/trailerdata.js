@@ -36,7 +36,7 @@ export const trailersData = [
     year: "2010",
     description: "A thief who steals corporate secrets through dream-sharing technology.",
     thumbnail: LT2,
-    videoUrl: "https://www.youtube.com/watch?v=PuzNA314WCI",
+    videoUrl: "https://youtu.be/5-qi2TGQ4a4?si=_sBB3TNsg8iG4wQb",
     credits: {
       director: { name: "Lokesh Kanagaraj", image: FMD1},
       producer: { name: "Kalanithi Maran", image: FMP1 },
