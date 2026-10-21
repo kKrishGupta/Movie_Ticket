@@ -195,7 +195,6 @@ const Trailers = () => {
 
         </div>
       </div>
-    // </div>
   )
 }
 
