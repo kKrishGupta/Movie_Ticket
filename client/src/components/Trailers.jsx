@@ -239,7 +239,7 @@ const Trailers = () => {
           </div>
         </div>
       </div>
-      <style jsx>{trailersCSS}</style>
+      <style>{trailersCSS}</style>
     </div>
   )
 }

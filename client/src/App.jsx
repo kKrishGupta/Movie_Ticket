@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Banner from './components/Banner';
 import Movies from './components/Movies';
 import Trailers from "./components/Trailers";
+import News from "./components/News";
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
@@ -14,6 +15,7 @@ const App = () => {
       <Banner />
       <Movies />
       <Trailers/>
+      <News/>
       <main className="flex-1 pt-28 sm:pt-32">
         <Routes>
           <Route path="/" element={<Home />} />
