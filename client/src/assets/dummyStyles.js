@@ -527,7 +527,7 @@ export const moviesStyles = {
 
 
 // Add to src/assets/dummyStyles.js
-export const loginStyles = {
+export const signupStyles = { ...loginStyles };
   // Page container
   pageContainer: "min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 to-black p-4 relative overflow-hidden",
   
@@ -567,6 +567,7 @@ export const loginStyles = {
   buttonContent: "flex items-center justify-center",
   buttonIcon: "mr-2",
   buttonText: "font-cinema text-sm sm:text-base",
+  loadingText: "font-cinema text-sm sm:text-base",
   
   // Footer link
   footerContainer: "text-center mt-6 sm:mt-8",
