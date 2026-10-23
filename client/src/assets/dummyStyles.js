@@ -365,10 +365,10 @@ export const contactStyles = {
 
 export const moviesPageStyles = {
   // Layout
-  container: "min-h-screen pt-20 bg-gradient-to-b from-gray-900 to-black text-white",
+  container: "min-h-screen pt-36 sm:pt-40 bg-gradient-to-b from-gray-900 to-black text-white",
   
   // Categories section
-  categoriesSection: "pt-12 px-4",
+  categoriesSection: "py-6 px-4",
   categoriesContainer: "container mx-auto",
   categoriesFlex: "flex flex-wrap gap-4 justify-center",
   categoryButton: {
