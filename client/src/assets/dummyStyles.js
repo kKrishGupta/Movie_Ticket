@@ -526,8 +526,7 @@ export const moviesStyles = {
 };
 
 
-// Add to src/assets/dummyStyles.js
-export const signupStyles = { ...loginStyles };
+export const loginStyles = {
   // Page container
   pageContainer: "min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 to-black p-4 relative overflow-hidden",
   
@@ -608,6 +607,7 @@ export const signupStyles = { ...loginStyles };
     }
   `
 };
+export const signupStyles = loginStyles;
 
 
 // ... previous styles ...

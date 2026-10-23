@@ -25,11 +25,11 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       setIsLoading(true);
-      if(!formData.password || !formData.password.length<6){
-          setIsLoading(false);
-          toast.error("Password must be at least 6 characters long");
-          console.warn('Login Block');
-          return;
+      if (!formData.password || formData.password.length < 6) {
+        setIsLoading(false);
+        toast.error("Password must be at least 6 characters long");
+        console.warn('Login Block');
+        return;
       }
       // Simulate an API call or perform your login logic here
       console.log('Form submitted:', formData);
