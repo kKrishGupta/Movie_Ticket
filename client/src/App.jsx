@@ -4,6 +4,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Movie from './pages/Movie';
+import Releases from './pages/Release';
+import Contact from './pages/Contact';
+import Booking from './pages/Bookings';
 import NotFound from './pages/NotFound';
 
 const App = () => {
@@ -14,6 +17,9 @@ const App = () => {
        <Route path="/login" element={<Login />} />
        <Route path="/signup" element={<Signup />} />
        <Route path="/movies" element={<Movie />} />
+       <Route path="/releases" element={<Releases />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/bookings" element={<Booking />} />
        <Route path="*" element={<NotFound />} />
      </Routes>
    </>

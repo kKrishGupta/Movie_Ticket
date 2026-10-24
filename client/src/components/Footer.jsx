@@ -177,10 +177,10 @@ const Footer = () => {
                   <Mail className={footerStyles.contactIcon} />
                 </div>
                 <a
-                  href="mailto:contact@hexagonsservices.com"
+                  href="mailto:contact@cinverseservices.com"
                   className={`${footerStyles.contactText} hover:text-white transition-colors`}
                 >
-                  contact@hexagonsservices.com
+                  contact@cinverseservices.com
                 </a>
               </li>
 
@@ -224,13 +224,13 @@ const Footer = () => {
           </div>
 
           <div className={footerStyles.policyLinks}>
-            <a href="#privacy" className={footerStyles.policyLink}>
+            <a href="/privacy" className={footerStyles.policyLink}>
               Privacy Policy
             </a>
-            <a href="#terms" className={footerStyles.policyLink}>
+            <a href="/terms" className={footerStyles.policyLink}>
               Terms of Service
             </a>
-            <a href="#cookies" className={footerStyles.policyLink}>
+            <a href="/cookies" className={footerStyles.policyLink}>
               Cookie Policy
             </a>
           </div>
