@@ -17,7 +17,7 @@ const Movies = () => {
       <div className={moviesStyles.grid}>
         {visibleMovies.map((m) => (
           <article key={m.id} className= {moviesStyles.movieArticle}>
-            <Link to ={`/movies/${m.id}`} className ={moviesStyles.movieLink}>
+            <Link to ={`/movie/${m.id}`} className ={moviesStyles.movieLink}>
             <img src={m.img} alt ={m.title} loading ="lazy" className={moviesStyles.movieImage}/>
             </Link>
 
